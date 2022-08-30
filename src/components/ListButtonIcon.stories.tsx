@@ -1,32 +1,22 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import ListButton from "./ListButton";
+import ListButtonIcon from "./ListButtonIcon";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "ListButton",
-  component: ListButton,
-} as ComponentMeta<typeof ListButton>;
+  title: "ListButtonIcon",
+  component: ListButtonIcon,
+} as ComponentMeta<typeof ListButtonIcon>;
 
-const Template: ComponentStory<typeof ListButton> = (args) => (
-  <ListButton {...args} />
+const Template: ComponentStory<typeof ListButtonIcon> = (args) => (
+  <ListButtonIcon {...args} />
 );
 
-export const Default = Template.bind({});
-Default.args = {
-  label: "Default",
-  active: false,
-};
-
 export const Inactive = Template.bind({});
-Inactive.args = {
-  label: "ListButton",
-};
+Inactive.args = {};
 
 export const InactiveHover = Template.bind({});
-InactiveHover.args = {
-  label: "ListButton",
-};
+InactiveHover.args = {};
 InactiveHover.parameters = {
   pseudo: {
     hover: true,
@@ -35,15 +25,11 @@ InactiveHover.parameters = {
 
 export const Active = Template.bind({});
 Active.args = {
-  label: "ListButton",
   active: true,
 };
 
 export const ActiveHover = Template.bind({});
-ActiveHover.args = {
-  label: "ListButton",
-  active: true,
-};
+ActiveHover.args = { active: true };
 ActiveHover.parameters = {
   pseudo: {
     hover: true,
