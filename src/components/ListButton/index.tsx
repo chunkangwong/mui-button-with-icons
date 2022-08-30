@@ -1,25 +1,35 @@
 import { Button } from "@mui/material";
-import ListButtonIcon from "../ListButtonIcon";
+import ListButtonIcon, { IconName } from "./ListButtonIcon";
 
-interface ListButton {
+interface ListButtonprops {
   active: boolean;
   label: string;
   icons?: {
     active: boolean;
-    iconName: string;
+    iconName: IconName;
   }[];
 }
 
-export default function ListButton({ active, label, icons }: ListButton) {
+export default function ListButton({ active, label, icons }: ListButtonprops) {
   return (
     <Button
-      id="list-button"
       variant={active ? "contained" : "text"}
       endIcon={icons?.map(({ active, iconName }) => (
-        <ListButtonIcon key={iconName} active={active}>
-          {iconName}
-        </ListButtonIcon>
+        <ListButtonIcon key={iconName} active={active} iconName={iconName} />
       ))}
+      sx={{
+        "& .MuiSvgIconActive": {
+          color: "inherit",
+        },
+        "& .MuiSvgIconInactive": {
+          color: "transparent",
+        },
+        "&:hover": {
+          "& .MuiSvgIconInactive": {
+            color: "#bec2ff",
+          },
+        },
+      }}
     >
       {label}
     </Button>

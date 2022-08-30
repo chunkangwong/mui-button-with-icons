@@ -1,9 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import ListButton from "./index";
-import ListButtonIcon from "../ListButtonIcon";
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: "ListButton",
   component: ListButton,
@@ -17,58 +15,96 @@ export const Inactive = Template.bind({});
 Inactive.args = {
   label: "ListButton",
   active: false,
+  icons: [
+    {
+      active: false,
+      iconName: "preload",
+    },
+    {
+      active: false,
+      iconName: "favourite",
+    },
+  ],
 };
 
-export const InactiveWithInactiveIcon = Template.bind({});
-InactiveWithInactiveIcon.args = {
+export const InactiveWithIcons = Template.bind({});
+InactiveWithIcons.args = {
   label: "ListButton",
   active: false,
   icons: [
     {
       active: false,
-      iconName: "star",
+      iconName: "preload",
+    },
+    {
+      active: true,
+      iconName: "favourite",
     },
   ],
 };
 
-export const InactiveWithActiveIcon = Template.bind({});
-InactiveWithActiveIcon.args = {
+export const HoveredInactiveWithIcons = Template.bind({});
+HoveredInactiveWithIcons.args = {
   label: "ListButton",
   active: false,
   icons: [
     {
+      active: false,
+      iconName: "preload",
+    },
+    {
       active: true,
-      iconName: "star",
+      iconName: "favourite",
     },
   ],
 };
+HoveredInactiveWithIcons.parameters = { pseudo: { hover: true } };
 
 export const Active = Template.bind({});
 Active.args = {
   label: "ListButton",
   active: true,
+  icons: [
+    {
+      active: false,
+      iconName: "preload",
+    },
+    {
+      active: false,
+      iconName: "favourite",
+    },
+  ],
 };
 
-export const ActiveWithInactiveIcon = Template.bind({});
-ActiveWithInactiveIcon.args = {
+export const ActiveWithIcons = Template.bind({});
+ActiveWithIcons.args = {
   label: "ListButton",
   active: true,
   icons: [
     {
       active: false,
-      iconName: "star",
+      iconName: "preload",
+    },
+    {
+      active: true,
+      iconName: "favourite",
     },
   ],
 };
 
-export const ActiveWithActiveIcon = Template.bind({});
-ActiveWithActiveIcon.args = {
+export const HoveredActiveWithIcons = Template.bind({});
+HoveredActiveWithIcons.args = {
   label: "ListButton",
   active: true,
   icons: [
     {
+      active: false,
+      iconName: "preload",
+    },
+    {
       active: true,
-      iconName: "star",
+      iconName: "favourite",
     },
   ],
 };
+HoveredActiveWithIcons.parameters = { pseudo: { hover: true } };
