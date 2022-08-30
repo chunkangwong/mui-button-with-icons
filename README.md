@@ -1,3 +1,3 @@
-# ts-react-redux-mui-vite-template
+# MUI Button with Icons
 
-A project template for a TypeScript React, Redux, MUI, Vite project.
+This project is a simple example of using the MUI Button with Icons component. This project is built with [Storybook](https://www.chromatic.com/builds?appId=630e49652c1fb70f17b0b152).

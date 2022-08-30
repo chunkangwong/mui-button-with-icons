@@ -27,8 +27,8 @@ Inactive.args = {
   ],
 };
 
-export const InactiveWithIcons = Template.bind({});
-InactiveWithIcons.args = {
+export const InactiveWithActiveIcon = Template.bind({});
+InactiveWithActiveIcon.args = {
   label: "ListButton",
   active: false,
   icons: [
@@ -42,23 +42,6 @@ InactiveWithIcons.args = {
     },
   ],
 };
-
-export const HoveredInactiveWithIcons = Template.bind({});
-HoveredInactiveWithIcons.args = {
-  label: "ListButton",
-  active: false,
-  icons: [
-    {
-      active: false,
-      iconName: "preload",
-    },
-    {
-      active: true,
-      iconName: "favourite",
-    },
-  ],
-};
-HoveredInactiveWithIcons.parameters = { pseudo: { hover: true } };
 
 export const Active = Template.bind({});
 Active.args = {
@@ -76,8 +59,8 @@ Active.args = {
   ],
 };
 
-export const ActiveWithIcons = Template.bind({});
-ActiveWithIcons.args = {
+export const ActiveWithActiveIcon = Template.bind({});
+ActiveWithActiveIcon.args = {
   label: "ListButton",
   active: true,
   icons: [
@@ -91,20 +74,3 @@ ActiveWithIcons.args = {
     },
   ],
 };
-
-export const HoveredActiveWithIcons = Template.bind({});
-HoveredActiveWithIcons.args = {
-  label: "ListButton",
-  active: true,
-  icons: [
-    {
-      active: false,
-      iconName: "preload",
-    },
-    {
-      active: true,
-      iconName: "favourite",
-    },
-  ],
-};
-HoveredActiveWithIcons.parameters = { pseudo: { hover: true } };
