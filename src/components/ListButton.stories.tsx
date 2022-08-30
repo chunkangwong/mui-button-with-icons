@@ -17,8 +17,29 @@ Default.args = {
   label: "ListButton",
 };
 
+export const DefaultHover = Template.bind({});
+DefaultHover.args = {
+  label: "ListButton",
+};
+DefaultHover.parameters = {
+  pseudo: {
+    hover: true,
+  },
+};
+
 export const Active = Template.bind({});
 Active.args = {
   label: "ListButton",
   active: true,
+};
+
+export const ActiveHover = Template.bind({});
+ActiveHover.args = {
+  label: "ListButton",
+  active: true,
+};
+ActiveHover.parameters = {
+  pseudo: {
+    hover: true,
+  },
 };
