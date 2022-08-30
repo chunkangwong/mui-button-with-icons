@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import ListButtonIcon from "./ListButtonIcon";
+import ListButtonIcon from "./index";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -13,10 +13,13 @@ const Template: ComponentStory<typeof ListButtonIcon> = (args) => (
 );
 
 export const Inactive = Template.bind({});
-Inactive.args = {};
+Inactive.args = {
+  children: "star",
+  active: false,
+};
 
 export const InactiveHover = Template.bind({});
-InactiveHover.args = {};
+InactiveHover.args = { children: "star" };
 InactiveHover.parameters = {
   pseudo: {
     hover: true,
@@ -25,11 +28,12 @@ InactiveHover.parameters = {
 
 export const Active = Template.bind({});
 Active.args = {
+  children: "star",
   active: true,
 };
 
 export const ActiveHover = Template.bind({});
-ActiveHover.args = { active: true };
+ActiveHover.args = { children: "star", active: true };
 ActiveHover.parameters = {
   pseudo: {
     hover: true,
