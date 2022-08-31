@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface Widget {
+export interface Widget {
   name: string;
   title: string;
   favourite: boolean;
