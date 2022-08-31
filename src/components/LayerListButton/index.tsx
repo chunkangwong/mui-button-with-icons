@@ -1,4 +1,4 @@
-import { ButtonProps } from "@mui/material";
+import { ButtonProps, Tooltip } from "@mui/material";
 import ListButton from "../ListButton";
 
 interface LayerListButton extends ButtonProps {
@@ -16,20 +16,22 @@ export default function LayerListButton({
   ...props
 }: LayerListButton) {
   return (
-    <ListButton
-      label={label}
-      active={active}
-      icons={[
-        {
-          active: favorite,
-          iconName: "favourite",
-        },
-        {
-          active: toPreload,
-          iconName: "preload",
-        },
-      ]}
-      {...props}
-    />
+    <Tooltip title="123" placement="right" arrow>
+      <ListButton
+        label={label}
+        active={active}
+        icons={[
+          {
+            active: favorite,
+            iconName: "favourite",
+          },
+          {
+            active: toPreload,
+            iconName: "preload",
+          },
+        ]}
+        {...props}
+      />
+    </Tooltip>
   );
 }
