@@ -16,19 +16,32 @@ export default function LayerListButton({
   toPreload,
   ...props
 }: LayerListButton) {
+  const [tooltipTitle, setTooltipTitle] = React.useState("...");
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
+  const [controller, setController] = React.useState<AbortController>();
 
-  const handleTooltipClose = () => {
-    setTooltipOpen(false);
+  const handleTooltipOpen = async () => {
+    const newController = new AbortController();
+    setController(newController);
+    setTooltipOpen(true);
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts?id=1", {
+      signal: newController.signal,
+    });
+    const json = await res.json();
+    const post = json[0];
+    setTooltipTitle(post.title);
   };
 
-  const handleTooltipOpen = () => {
-    setTooltipOpen(true);
+  const handleTooltipClose = () => {
+    if (controller) {
+      controller.abort();
+    }
+    setTooltipOpen(false);
   };
 
   return (
     <Tooltip
-      title="123"
+      title={tooltipTitle}
       placement="right"
       arrow
       open={tooltipOpen}
