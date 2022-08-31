@@ -20,16 +20,21 @@ export default function LayerListButton({
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
   const [controller, setController] = React.useState<AbortController>();
 
-  const handleTooltipOpen = async () => {
-    const newController = new AbortController();
-    setController(newController);
-    setTooltipOpen(true);
-    const res = await fetch("https://jsonplaceholder.typicode.com/posts?id=1", {
-      signal: newController.signal,
-    });
-    const json = await res.json();
-    const post = json[0];
-    setTooltipTitle(post.title);
+  const handleTooltipOpen = async (event: React.MouseEvent) => {
+    if (event.ctrlKey) {
+      const newController = new AbortController();
+      setController(newController);
+      setTooltipOpen(true);
+      const res = await fetch(
+        "https://jsonplaceholder.typicode.com/posts?id=1",
+        {
+          signal: newController.signal,
+        }
+      );
+      const json = await res.json();
+      const post = json[0];
+      setTooltipTitle(post.title);
+    }
   };
 
   const handleTooltipClose = () => {
@@ -45,7 +50,7 @@ export default function LayerListButton({
       placement="right"
       arrow
       open={tooltipOpen}
-      onOpen={handleTooltipOpen}
+      onMouseEnter={handleTooltipOpen}
       onClose={handleTooltipClose}
     >
       <ListButton
