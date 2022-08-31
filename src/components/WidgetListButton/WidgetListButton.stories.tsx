@@ -18,8 +18,8 @@ Inactive.args = {
   favorite: false,
 };
 
-export const InactiveWithActiveIcon = Template.bind({});
-InactiveWithActiveIcon.args = {
+export const InactiveFavourite = Template.bind({});
+InactiveFavourite.args = {
   label: "WidgetListButton",
   active: false,
   favorite: true,
@@ -32,8 +32,8 @@ Active.args = {
   favorite: false,
 };
 
-export const ActiveWithActiveIcon = Template.bind({});
-ActiveWithActiveIcon.args = {
+export const ActiveFavourite = Template.bind({});
+ActiveFavourite.args = {
   label: "WidgetListButton",
   active: true,
   favorite: true,

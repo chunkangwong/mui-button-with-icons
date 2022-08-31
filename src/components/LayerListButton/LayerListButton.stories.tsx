@@ -19,12 +19,28 @@ Inactive.args = {
   toPreload: false,
 };
 
-export const InactiveWithActiveIcon = Template.bind({});
-InactiveWithActiveIcon.args = {
+export const InactiveFavourite = Template.bind({});
+InactiveFavourite.args = {
   label: "LayerListButton",
   active: false,
   favorite: true,
   toPreload: false,
+};
+
+export const InactivePreload = Template.bind({});
+InactivePreload.args = {
+  label: "LayerListButton",
+  active: false,
+  favorite: false,
+  toPreload: true,
+};
+
+export const InactiveFavouritePreload = Template.bind({});
+InactiveFavouritePreload.args = {
+  label: "LayerListButton",
+  active: false,
+  favorite: true,
+  toPreload: true,
 };
 
 export const Active = Template.bind({});
@@ -35,10 +51,26 @@ Active.args = {
   toPreload: false,
 };
 
-export const ActiveWithActiveIcon = Template.bind({});
-ActiveWithActiveIcon.args = {
+export const ActiveFavourite = Template.bind({});
+ActiveFavourite.args = {
+  label: "LayerListButton",
+  active: true,
+  favorite: true,
+  toPreload: false,
+};
+
+export const ActivePreload = Template.bind({});
+ActivePreload.args = {
   label: "LayerListButton",
   active: true,
   favorite: false,
+  toPreload: true,
+};
+
+export const ActiveFavouritePreload = Template.bind({});
+ActiveFavouritePreload.args = {
+  label: "LayerListButton",
+  active: true,
+  favorite: true,
   toPreload: true,
 };
