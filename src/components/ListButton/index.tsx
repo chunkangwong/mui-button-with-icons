@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import ListButtonIcon, { IconName } from "./ListButtonIcon";
 
 interface ListButtonprops {
@@ -11,12 +11,18 @@ interface ListButtonprops {
 }
 
 export default function ListButton({ active, label, icons }: ListButtonprops) {
+  const EndIcons = () => (
+    <Stack direction="row">
+      {icons?.map(({ active, iconName }) => (
+        <ListButtonIcon key={iconName} active={active} iconName={iconName} />
+      ))}
+    </Stack>
+  );
+
   return (
     <Button
       variant={active ? "contained" : "text"}
-      endIcon={icons?.map(({ active, iconName }) => (
-        <ListButtonIcon key={iconName} active={active} iconName={iconName} />
-      ))}
+      endIcon={<EndIcons />}
       sx={{
         "& .MuiSvgIconActive": {
           color: "inherit",
