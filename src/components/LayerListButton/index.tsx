@@ -1,12 +1,15 @@
 import { ButtonProps, Tooltip } from "@mui/material";
-import ListButton from "../ListButton";
 import * as React from "react";
+import ListButton from "../ListButton";
 
 interface LayerListButton extends ButtonProps {
   label: string;
   active: boolean;
   favorite: boolean;
   toPreload: boolean;
+  onListButtonClick: () => void;
+  onFavouriteButtonClick: () => void;
+  onPreloadButtonClick: () => void;
 }
 
 export default function LayerListButton({
@@ -14,6 +17,9 @@ export default function LayerListButton({
   active,
   favorite,
   toPreload,
+  onListButtonClick,
+  onFavouriteButtonClick,
+  onPreloadButtonClick,
   ...props
 }: LayerListButton) {
   const [tooltipTitle, setTooltipTitle] = React.useState("...");
@@ -56,14 +62,17 @@ export default function LayerListButton({
       <ListButton
         label={label}
         active={active}
+        onClick={onListButtonClick}
         icons={[
           {
             active: favorite,
             iconName: "favourite",
+            onClick: onFavouriteButtonClick,
           },
           {
             active: toPreload,
             iconName: "preload",
+            onClick: onPreloadButtonClick,
           },
         ]}
         {...props}

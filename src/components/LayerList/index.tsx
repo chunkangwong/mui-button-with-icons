@@ -17,6 +17,9 @@ export default function LayerList({}: LayerListProps) {
           favorite={layer.favourite}
           active={layer.active}
           toPreload={layer.toPreload}
+          onListButtonClick={() => {}}
+          onFavouriteButtonClick={() => {}}
+          onPreloadButtonClick={() => {}}
         />
       ))}
     </Stack>
