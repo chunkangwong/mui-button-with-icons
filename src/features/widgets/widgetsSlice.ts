@@ -16,32 +16,35 @@ const initialState: WidgetsState = [
   { name: "widget4", title: "Widget 4", favourite: true, active: true },
 ];
 
-const widgetsSlice = createSlice({
-  name: "widgets",
-  initialState,
-  reducers: {
-    setWidgetActive(
-      state,
-      action: PayloadAction<{ name: string; active: boolean }>
-    ) {
-      const { name, active } = action.payload;
-      const selectedWidget = state.find((widget) => widget.name === name);
-      if (selectedWidget) {
-        selectedWidget.active = active;
-      }
+export const getWidgetsSlice = (initialState: WidgetsState) =>
+  createSlice({
+    name: "widgets",
+    initialState,
+    reducers: {
+      setWidgetActive(
+        state,
+        action: PayloadAction<{ name: string; active: boolean }>
+      ) {
+        const { name, active } = action.payload;
+        const selectedWidget = state.find((widget) => widget.name === name);
+        if (selectedWidget) {
+          selectedWidget.active = active;
+        }
+      },
+      setWidgetFavourite(
+        state,
+        action: PayloadAction<{ name: string; favourite: boolean }>
+      ) {
+        const { name, favourite } = action.payload;
+        const selectedWidget = state.find((widget) => widget.name === name);
+        if (selectedWidget) {
+          selectedWidget.favourite = favourite;
+        }
+      },
     },
-    setWidgetFavourite(
-      state,
-      action: PayloadAction<{ name: string; favourite: boolean }>
-    ) {
-      const { name, favourite } = action.payload;
-      const selectedWidget = state.find((widget) => widget.name === name);
-      if (selectedWidget) {
-        selectedWidget.favourite = favourite;
-      }
-    },
-  },
-});
+  });
+
+const widgetsSlice = getWidgetsSlice(initialState);
 
 export const { setWidgetActive, setWidgetFavourite } = widgetsSlice.actions;
 

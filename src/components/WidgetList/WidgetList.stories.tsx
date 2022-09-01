@@ -1,7 +1,7 @@
-import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Provider } from "react-redux";
-import { Widget } from "../../features/widgets/widgetsSlice";
+import { getWidgetsSlice, Widget } from "../../features/widgets/widgetsSlice";
 import WidgetList from "./index";
 
 export const MockedState: Widget[] = [
@@ -21,36 +21,7 @@ const Mockstore = ({
   <Provider
     store={configureStore({
       reducer: {
-        widgets: createSlice({
-          name: "widgets",
-          initialState: initialState,
-          reducers: {
-            setWidgetActive(
-              state,
-              action: PayloadAction<{ name: string; active: boolean }>
-            ) {
-              const { name, active } = action.payload;
-              const selectedWidget = state.find(
-                (widget) => widget.name === name
-              );
-              if (selectedWidget) {
-                selectedWidget.active = active;
-              }
-            },
-            setWidgetFavourite(
-              state,
-              action: PayloadAction<{ name: string; favourite: boolean }>
-            ) {
-              const { name, favourite } = action.payload;
-              const selectedWidget = state.find(
-                (widget) => widget.name === name
-              );
-              if (selectedWidget) {
-                selectedWidget.favourite = favourite;
-              }
-            },
-          },
-        }).reducer,
+        widgets: getWidgetsSlice(initialState).reducer,
       },
     })}
   >
@@ -62,7 +33,13 @@ export default {
   title: "WidgetList",
   component: WidgetList,
   excludeStories: /.*MockedState$/,
-  decorators: [(story) => <div style={{ width: "200px" }}>{story()}</div>],
+  decorators: [
+    (story) => (
+      <Mockstore initialState={MockedState}>
+        <div style={{ width: "200px" }}>{story()}</div>
+      </Mockstore>
+    ),
+  ],
 } as ComponentMeta<typeof WidgetList>;
 
 const Template: ComponentStory<typeof WidgetList> = (args) => (
@@ -70,8 +47,3 @@ const Template: ComponentStory<typeof WidgetList> = (args) => (
 );
 
 export const Default = Template.bind({});
-Default.decorators = [
-  (story) => {
-    return <Mockstore initialState={MockedState}>{story()}</Mockstore>;
-  },
-];
