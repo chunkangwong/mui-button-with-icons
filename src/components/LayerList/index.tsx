@@ -1,4 +1,12 @@
-import { Stack } from "@mui/material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import {
+  Collapse,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Stack,
+} from "@mui/material";
+import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectLayersByGroup,
@@ -15,6 +23,7 @@ interface LayerListProps {
 }
 
 export default function LayerList({ groupName, groupTitle }: LayerListProps) {
+  const [open, setOpen] = React.useState(true);
   const layers = useSelector((state: RootState) =>
     selectLayersByGroup(state, groupName)
   );
@@ -39,25 +48,33 @@ export default function LayerList({ groupName, groupTitle }: LayerListProps) {
   };
 
   return (
-    <Stack gap="1rem">
-      {layers?.map((layer) => (
-        <LayerListButton
-          key={layer.name}
-          label={layer.title}
-          favorite={layer.favourite}
-          active={layer.active}
-          toPreload={layer.toPreload}
-          onListButtonClick={() =>
-            handleListButtonClick(layer.name, layer.active)
-          }
-          onFavouriteButtonClick={() =>
-            handleFavouriteButtonClick(layer.name, layer.favourite)
-          }
-          onPreloadButtonClick={() =>
-            handlePreloadButtonClick(layer.name, layer.toPreload)
-          }
-        />
-      ))}
-    </Stack>
+    <>
+      <ListItemButton onClick={() => setOpen(!open)}>
+        <ListItemIcon>{open ? <ExpandLess /> : <ExpandMore />}</ListItemIcon>
+        <ListItemText primary={groupTitle} />
+      </ListItemButton>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <Stack gap="1rem" sx={{ pl: 7 }}>
+          {layers?.map((layer) => (
+            <LayerListButton
+              key={layer.name}
+              label={layer.title}
+              favorite={layer.favourite}
+              active={layer.active}
+              toPreload={layer.toPreload}
+              onListButtonClick={() =>
+                handleListButtonClick(layer.name, layer.active)
+              }
+              onFavouriteButtonClick={() =>
+                handleFavouriteButtonClick(layer.name, layer.favourite)
+              }
+              onPreloadButtonClick={() =>
+                handlePreloadButtonClick(layer.name, layer.toPreload)
+              }
+            />
+          ))}
+        </Stack>
+      </Collapse>
+    </>
   );
 }

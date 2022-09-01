@@ -94,7 +94,7 @@ export default {
   decorators: [
     (story) => (
       <Mockstore initialState={MockedState}>
-        <div style={{ width: "200px" }}>{story()}</div>
+        <div style={{ width: "300px" }}>{story()}</div>
       </Mockstore>
     ),
   ],
@@ -107,4 +107,5 @@ const Template: ComponentStory<typeof LayerList> = (args) => (
 export const Default = Template.bind({});
 Default.args = {
   groupName: "layerGroup1",
+  groupTitle: "Layer Group 1",
 };
