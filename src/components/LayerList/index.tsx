@@ -1,6 +1,7 @@
 import { Stack } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  selectLayersByGroup,
   setLayerActive,
   setLayerFavourite,
   setLayerToPreload,
@@ -8,10 +9,15 @@ import {
 import { RootState } from "../../store/store";
 import LayerListButton from "../LayerListButton";
 
-interface LayerListProps {}
+interface LayerListProps {
+  groupName: string;
+  groupTitle: string;
+}
 
-export default function LayerList({}: LayerListProps) {
-  const layers = useSelector((state: RootState) => state.layers);
+export default function LayerList({ groupName, groupTitle }: LayerListProps) {
+  const layers = useSelector((state: RootState) =>
+    selectLayersByGroup(state, groupName)
+  );
   const dispatch = useDispatch();
 
   const handleListButtonClick = (name: string, currentActive: boolean) => {
@@ -34,7 +40,7 @@ export default function LayerList({}: LayerListProps) {
 
   return (
     <Stack gap="1rem">
-      {layers.map((layer) => (
+      {layers?.map((layer) => (
         <LayerListButton
           key={layer.name}
           label={layer.title}
