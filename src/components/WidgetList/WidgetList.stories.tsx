@@ -37,6 +37,7 @@ export default {
   title: "WidgetList",
   component: WidgetList,
   excludeStories: /.*MockedState$/,
+  decorators: [(story) => <div style={{ width: "200px" }}>{story()}</div>],
 } as ComponentMeta<typeof WidgetList>;
 
 const Template: ComponentStory<typeof WidgetList> = (args) => (

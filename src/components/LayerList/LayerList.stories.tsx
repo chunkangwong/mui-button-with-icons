@@ -89,6 +89,7 @@ export default {
   title: "LayerList",
   component: LayerList,
   excludeStories: /.*MockedState$/,
+  decorators: [(story) => <div style={{ width: "200px" }}>{story()}</div>],
 } as ComponentMeta<typeof LayerList>;
 
 const Template: ComponentStory<typeof LayerList> = (args) => (
