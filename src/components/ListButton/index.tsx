@@ -51,6 +51,7 @@ const ListButton = React.forwardRef<HTMLButtonElement, ListButtonprops>(
           padding: "0.375rem 1rem", // To align the padding between contanied and text variant
           borderRadius: "2.625rem",
           textTransform: "none",
+          fontSize: "1rem",
           "& .MuiSvgIconActive": {
             color: "inherit",
           },

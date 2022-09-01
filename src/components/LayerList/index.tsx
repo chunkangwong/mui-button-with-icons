@@ -57,7 +57,14 @@ export default function LayerList({ groupName, groupTitle }: LayerListProps) {
         >
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItemIcon>
-        <ListItemText primary={groupTitle} />
+        <ListItemText
+          primary={groupTitle}
+          sx={{
+            "& .MuiTypography-root": {
+              fontSize: "1.25rem",
+            },
+          }}
+        />
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <Stack gap={1} sx={{ pl: 6 }}>
