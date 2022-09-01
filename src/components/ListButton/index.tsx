@@ -21,7 +21,7 @@ interface ListButtonprops extends ButtonProps {
 const ListButton = React.forwardRef<HTMLButtonElement, ListButtonprops>(
   ({ active, label, icons, onClick, ...props }, ref) => {
     const endIcons = () => (
-      <Stack direction="row">
+      <Stack direction="row" gap={1}>
         {icons?.map(({ active, iconName, onClick }) => (
           <ListButtonIcon
             key={iconName}
@@ -52,6 +52,8 @@ const ListButton = React.forwardRef<HTMLButtonElement, ListButtonprops>(
         sx={{
           backgroundColor: active ? DARK_BLUE : "transparent",
           color: active ? "white" : DARK_BLUE,
+          display: "flex",
+          justifyContent: "space-between",
           "& .MuiSvgIconActive": {
             color: "inherit",
           },
