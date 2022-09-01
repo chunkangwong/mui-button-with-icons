@@ -50,11 +50,17 @@ export default function LayerList({ groupName, groupTitle }: LayerListProps) {
   return (
     <>
       <ListItemButton onClick={() => setOpen(!open)}>
-        <ListItemIcon>{open ? <ExpandLess /> : <ExpandMore />}</ListItemIcon>
+        <ListItemIcon
+          sx={{
+            minWidth: "2rem",
+          }}
+        >
+          {open ? <ExpandLess /> : <ExpandMore />}
+        </ListItemIcon>
         <ListItemText primary={groupTitle} />
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
-        <Stack gap="1rem" sx={{ pl: 7 }}>
+        <Stack gap={1} sx={{ pl: 6 }}>
           {layers?.map((layer) => (
             <LayerListButton
               key={layer.name}
