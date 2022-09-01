@@ -2,8 +2,6 @@ import { Button, ButtonProps, Stack } from "@mui/material";
 import ListButtonIcon, { IconName } from "./ListButtonIcon";
 import * as React from "react";
 
-const LIST_BUTTON_CLASSNAME = "MuiListButton-custom";
-
 interface Icon {
   active: boolean;
   iconName: IconName;
@@ -34,10 +32,9 @@ const ListButton = React.forwardRef<HTMLButtonElement, ListButtonprops>(
     const handleListButtonClick = (
       event: React.MouseEvent<HTMLButtonElement>
     ) => {
-      console.log("List button clicked");
       if (onClick) {
         const target = event.target as HTMLButtonElement;
-        if (target.classList.contains(LIST_BUTTON_CLASSNAME)) {
+        if (target.classList.contains("MuiButton-root")) {
           onClick(event);
         }
       }
@@ -45,7 +42,6 @@ const ListButton = React.forwardRef<HTMLButtonElement, ListButtonprops>(
 
     return (
       <Button
-        className={LIST_BUTTON_CLASSNAME}
         variant={active ? "contained" : "text"}
         endIcon={endIcons()}
         onClick={handleListButtonClick}
