@@ -2,6 +2,10 @@ import { Button, ButtonProps, Stack } from "@mui/material";
 import ListButtonIcon, { IconName } from "./ListButtonIcon";
 import * as React from "react";
 
+const DARK_BLUE = "#3874CB";
+const HOVER_BG = "#F7F9FD";
+const HOVER_ICON = "#BEC2FF";
+
 interface Icon {
   active: boolean;
   iconName: IconName;
@@ -42,10 +46,12 @@ const ListButton = React.forwardRef<HTMLButtonElement, ListButtonprops>(
 
     return (
       <Button
-        variant={active ? "contained" : "text"}
+        disableElevation
         endIcon={endIcons()}
         onClick={handleListButtonClick}
         sx={{
+          backgroundColor: active ? DARK_BLUE : "transparent",
+          color: active ? "white" : DARK_BLUE,
           "& .MuiSvgIconActive": {
             color: "inherit",
           },
@@ -53,8 +59,10 @@ const ListButton = React.forwardRef<HTMLButtonElement, ListButtonprops>(
             color: "transparent",
           },
           "&:hover": {
+            backgroundColor: HOVER_BG,
+            color: DARK_BLUE,
             "& .MuiSvgIconInactive": {
-              color: "#bec2ff",
+              color: HOVER_ICON,
             },
           },
         }}
