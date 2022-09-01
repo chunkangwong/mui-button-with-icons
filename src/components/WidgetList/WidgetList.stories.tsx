@@ -1,4 +1,4 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Provider } from "react-redux";
 import { Widget } from "../../features/widgets/widgetsSlice";
@@ -24,7 +24,32 @@ const Mockstore = ({
         widgets: createSlice({
           name: "widgets",
           initialState: initialState,
-          reducers: {},
+          reducers: {
+            setWidgetActive(
+              state,
+              action: PayloadAction<{ name: string; active: boolean }>
+            ) {
+              const { name, active } = action.payload;
+              const selectedWidget = state.find(
+                (widget) => widget.name === name
+              );
+              if (selectedWidget) {
+                selectedWidget.active = active;
+              }
+            },
+            setWidgetFavourite(
+              state,
+              action: PayloadAction<{ name: string; favourite: boolean }>
+            ) {
+              const { name, favourite } = action.payload;
+              const selectedWidget = state.find(
+                (widget) => widget.name === name
+              );
+              if (selectedWidget) {
+                selectedWidget.favourite = favourite;
+              }
+            },
+          },
         }).reducer,
       },
     })}
